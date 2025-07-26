@@ -4,6 +4,13 @@ import { MenuItem } from '@shared/schema';
 export interface CartItem extends MenuItem {
   quantity: number;
   variation?: string;
+  customization?: {
+    toppings?: { [key: string]: number };
+    flavour?: string;
+    sauce?: string;
+    crust?: string;
+    instructions?: string;
+  };
 }
 
 interface CartStore {

@@ -1,4 +1,4 @@
-import { Minus, Plus, X } from "lucide-react";
+import { Minus, Plus, Trash2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,7 @@ import { useCartStore } from "@/lib/store";
 import { useCart } from "@/hooks/use-cart";
 
 export default function CartModal() {
-  const { isCartOpen, setCartOpen, setPaymentModalOpen } = useCartStore();
+  const { isCartOpen, setCartOpen, setPaymentModalOpen, removeItem } = useCartStore();
   const { items, updateQuantity, clearCart, total } = useCart();
 
   const serviceCharge = 500;
@@ -21,87 +21,121 @@ export default function CartModal() {
   return (
     <Dialog open={isCartOpen} onOpenChange={setCartOpen}>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="sticky top-0 bg-white border-b border-gray-200 pb-4">
+        <DialogHeader className="border-b border-gray-200 pb-4">
           <div className="flex items-center justify-between">
-            <DialogTitle className="text-xl font-bold configurable-text-primary">Your cart</DialogTitle>
-            <div className="flex items-center space-x-3">
-              <Button variant="ghost" onClick={clearCart} className="text-green-600 font-medium">
-                Clear Cart
-              </Button>
-            </div>
+            <DialogTitle className="text-xl font-bold text-black">Your cart</DialogTitle>
+            <Button variant="ghost" onClick={clearCart} className="text-green-600 font-medium hover:text-green-700">
+              Clear Cart
+            </Button>
           </div>
         </DialogHeader>
         
-        <div className="space-y-6">
+        <div className="space-y-6 pt-4">
           {/* Cart Items */}
           <div className="space-y-4">
             {items.map((item) => (
-              <div key={`${item.id}-${item.variation}`} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg" />
-                <div className="flex-1">
-                  <h4 className="font-semibold configurable-text-primary">{item.name}</h4>
-                  <p className="text-sm configurable-text-secondary line-clamp-1">{item.description}</p>
-                  <div className="flex items-center justify-between mt-2">
-                    <div className="flex items-center space-x-3">
-                      <Button
-                        size="icon"
-                        variant="outline"
-                        className="w-8 h-8 rounded-full"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      >
-                        <Minus size={12} />
-                      </Button>
-                      <span className="font-medium">{item.quantity}</span>
-                      <Button
-                        size="icon"
-                        variant="outline"
-                        className="w-8 h-8 rounded-full"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      >
-                        <Plus size={12} />
-                      </Button>
-                    </div>
-                    <span className="font-bold configurable-text-primary">
-                      Rs. {(parseFloat(item.price) * item.quantity).toFixed(2)}
-                    </span>
+              <div key={`${item.id}-${item.variation}`} className="border-b border-gray-100 pb-4 last:border-b-0">
+                <div className="flex gap-4">
+                  {/* Item Image */}
+                  <div className="w-20 h-20 flex-shrink-0">
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-lg border border-gray-200" />
                   </div>
-                  {item.variation && (
-                    <p className="text-xs configurable-text-secondary mt-1">Variation: {item.variation}</p>
-                  )}
+                  
+                  {/* Item Details */}
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-black text-base">{item.name}</h4>
+                    <p className="text-sm text-gray-600 mt-1 line-clamp-2">{item.description}</p>
+                    
+                    {/* Variation */}
+                    {item.variation && (
+                      <div className="mt-2">
+                        <h5 className="text-sm font-medium text-black">Variation</h5>
+                        <p className="text-sm text-gray-600">{item.variation}</p>
+                      </div>
+                    )}
+                    
+                    {/* Extra Toppings */}
+                    {item.customization?.toppings && Object.keys(item.customization.toppings).length > 0 && (
+                      <div className="mt-2">
+                        <h5 className="text-sm font-medium text-black">Extra Toppings</h5>
+                        <div className="text-sm text-gray-600">
+                          {Object.entries(item.customization.toppings).map(([topping, qty]) => (
+                            <p key={topping}>{qty}x {topping.charAt(0).toUpperCase() + topping.slice(1)}</p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Price */}
+                  <div className="text-right">
+                    <div className="text-lg font-bold text-black">Rs. {(parseFloat(item.price) * item.quantity).toFixed(2)}</div>
+                  </div>
+                </div>
+                
+                {/* Quantity Controls and Delete */}
+                <div className="flex items-center justify-between mt-4">
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      className="w-8 h-8 bg-green-600 text-white rounded flex items-center justify-center hover:bg-green-700"
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <span className="w-12 text-center font-medium text-black">{item.quantity}</span>
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      className="w-8 h-8 bg-green-600 text-white rounded flex items-center justify-center hover:bg-green-700"
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                  
+                  <button
+                    onClick={() => removeItem(item.id)}
+                    className="p-2 text-red-500 hover:text-red-700"
+                  >
+                    <Trash2 size={18} />
+                  </button>
                 </div>
               </div>
             ))}
           </div>
           
           {/* Promo Code */}
-          <div>
-            <label className="block text-sm font-medium configurable-text-primary mb-2">Promo code</label>
-            <div className="flex space-x-2">
-              <Input placeholder="Enter promo code" className="flex-1" />
-              <Button className="configurable-primary text-white hover:bg-green-600">Apply</Button>
+          <div className="pt-4">
+            <h4 className="font-bold text-black text-base mb-3">Promo code</h4>
+            <div className="flex gap-2">
+              <Input 
+                placeholder="" 
+                className="flex-1 border border-gray-300 rounded-lg px-3 py-2" 
+              />
+              <Button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 font-medium">
+                Apply
+              </Button>
             </div>
           </div>
           
           {/* Order Summary */}
-          <div className="border-t border-gray-200 pt-4">
-            <h4 className="font-semibold configurable-text-primary mb-3">Order Summary</h4>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="configurable-text-secondary">Sub Total</span>
-                <span className="configurable-text-primary">Rs. {total.toFixed(2)}</span>
+          <div className="pt-6">
+            <h4 className="font-bold text-black text-base mb-4">Order Summary</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-black">Sub Total</span>
+                <span className="text-black font-medium">RS. {total.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="configurable-text-secondary">Service Charges</span>
-                <span className="configurable-text-primary">Rs. {serviceCharge.toFixed(2)}</span>
+              <div className="flex justify-between text-sm">
+                <span className="text-black">Service Charges</span>
+                <span className="text-black font-medium">RS. {serviceCharge.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="configurable-text-secondary">Discount</span>
-                <span className="text-green-600">-Rs. {discount.toFixed(2)}</span>
+              <div className="flex justify-between text-sm">
+                <span className="text-black">Discount</span>
+                <span className="text-black font-medium">RS. {discount.toFixed(2)}</span>
               </div>
-              <div className="border-t border-gray-200 pt-2 mt-2">
-                <div className="flex justify-between font-bold">
-                  <span className="configurable-text-primary">Grand Total</span>
-                  <span className="configurable-text-primary">Rs. {grandTotal.toFixed(2)}</span>
+              <div className="border-t border-gray-200 pt-3">
+                <div className="flex justify-between">
+                  <span className="text-black font-bold text-base">Grand Total</span>
+                  <span className="text-black font-bold text-base">RS. {total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -109,7 +143,7 @@ export default function CartModal() {
           
           <Button 
             onClick={handleProceedToPayment}
-            className="w-full configurable-primary text-white py-3 text-lg font-bold hover:bg-green-600"
+            className="w-full bg-green-600 text-white py-4 text-base font-medium hover:bg-green-700 rounded-lg mt-6"
             disabled={items.length === 0}
           >
             Place Order
