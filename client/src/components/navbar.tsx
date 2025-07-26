@@ -1,14 +1,17 @@
 import { ShoppingCart, Receipt, Utensils, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useCart } from "@/hooks/use-cart";
 import { useCartStore } from "@/lib/store";
 import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
-  const { count } = useCart();
-  const { setCartOpen } = useCartStore();
+  const { setCartOpen, items } = useCartStore();
   const [location] = useLocation();
+  const cartCount = items.reduce((count, item) => count + item.quantity, 0);
+  
+  console.log('Navbar - Current location:', location);
+  console.log('Navbar - Cart items:', items);
+  console.log('Navbar - Cart count:', cartCount);
 
   return (
     <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
@@ -45,9 +48,9 @@ export default function Navbar() {
             >
               <ShoppingCart size={20} />
               <span className="hidden sm:inline">Cart</span>
-              {count > 0 && (
+              {cartCount > 0 && (
                 <Badge variant="secondary" className="absolute -top-1 -right-1 bg-red-500 text-white min-w-[20px] h-5 flex items-center justify-center text-xs">
-                  {count}
+                  {cartCount}
                 </Badge>
               )}
             </Button>
