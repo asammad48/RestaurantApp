@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import FoodCard from "@/components/food-card";
 import Footer from "@/components/footer";
+import FloatingButtons from "@/components/floating-buttons";
 import { Order, MenuItem } from "@shared/schema";
 import { useCartStore } from "@/lib/store";
 import AddToCartModal from "@/components/modals/add-to-cart-modal";
@@ -346,26 +347,8 @@ export default function Orders() {
         )}
       </div>
 
-      {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 flex flex-col space-y-4 z-50">
-        {/* Service Request Button */}
-        <Button 
-          className="w-14 h-14 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg flex items-center justify-center"
-          onClick={() => console.log('Service request')}
-        >
-          <User size={24} />
-        </Button>
-        
-        {/* Food Order Button */}
-        <Button 
-          className="w-14 h-14 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg flex items-center justify-center"
-          onClick={() => console.log('Food order')}
-        >
-          <Utensils size={24} />
-        </Button>
-      </div>
-
       <Footer />
+      <FloatingButtons />
       
       {/* Modals */}
       <AddToCartModal />
