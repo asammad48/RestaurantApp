@@ -99,57 +99,7 @@ export default function Orders() {
     }
   ];
 
-  // Recommended pizza data to match design
-  const pizzaData = [
-    {
-      id: '1',
-      name: 'Pizza Combo',
-      description: 'A spicy and flavorful pizza topped with pizza sauce, cheese, and chili toppings.',
-      price: 550.00,
-      originalPrice: 'Rs. 550.00',
-      discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
-      category: 'pizza',
-      isRecommended: true,
-      isDeal: true
-    },
-    {
-      id: '2',
-      name: 'Pizza Combo',
-      description: 'A spicy and flavorful pizza topped with pizza sauce, cheese, and chili toppings.',
-      price: 550.00,
-      originalPrice: 'Rs. 550.00',
-      discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
-      category: 'pizza',
-      isRecommended: true,
-      isDeal: true
-    },
-    {
-      id: '3',
-      name: 'Pizza Combo',
-      description: 'A spicy and flavorful pizza topped with pizza sauce, cheese, and chili toppings.',
-      price: 550.00,
-      originalPrice: 'Rs. 550.00',
-      discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
-      category: 'pizza',
-      isRecommended: true,
-      isDeal: true
-    },
-    {
-      id: '4',
-      name: 'Pizza Combo',
-      description: 'A spicy and flavorful pizza topped with pizza sauce, cheese, and chili toppings.',
-      price: 550.00,
-      originalPrice: 'Rs. 550.00',
-      discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
-      category: 'pizza',
-      isRecommended: true,
-      isDeal: true
-    }
-  ];
+
 
   if (isLoading) {
     return (
@@ -374,50 +324,16 @@ export default function Orders() {
         </div>
 
         {/* Recommended For You */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-black mb-6">Recommended For You</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {pizzaData.map((pizza) => (
-              <div key={pizza.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden relative">
-                {/* Discount Badge */}
-                <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 text-xs rounded z-10">
-                  {pizza.discount}% off
-                </div>
-                
-                {/* Pizza Image */}
-                <div className="relative h-40 bg-gray-100">
-                  <img 
-                    src={pizza.image} 
-                    alt={pizza.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                {/* Pizza Details */}
-                <div className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-2">{pizza.name}</h3>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">{pizza.description}</p>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-lg font-bold text-gray-900">
-                      {pizza.originalPrice}
-                    </div>
-                  </div>
-                  
-                  <Button 
-                    className="w-full bg-green-600 text-white hover:bg-green-700 rounded-full py-2"
-                    onClick={() => {
-                      // Add to cart functionality would go here
-                      console.log('Adding pizza to cart:', pizza.name);
-                    }}
-                  >
-                    Add to cart
-                  </Button>
-                </div>
-              </div>
-            ))}
+        {recommendedItems.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-black mb-6">Recommended For You</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {recommendedItems.slice(0, 4).map((item) => (
+                <FoodCard key={item.id} item={item} variant="grid" />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Floating Action Buttons */}
