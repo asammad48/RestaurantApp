@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ShoppingCart, Utensils, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Navbar from "@/components/navbar";
 import FoodCard from "@/components/food-card";
 import Footer from "@/components/footer";
 import FloatingButtons from "@/components/floating-buttons";
@@ -112,6 +113,7 @@ export default function Orders() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50">
+        <Navbar />
         <div className="flex items-center justify-center h-64">
           <div className="text-lg">Loading orders...</div>
         </div>
@@ -121,27 +123,7 @@ export default function Orders() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="text-lg font-bold text-green-600">RESTAURANT LOGO</div>
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setCartOpen(true)}
-                className="flex items-center space-x-2 px-4 py-2 rounded-full border border-gray-300"
-              >
-                <ShoppingCart size={18} />
-              </Button>
-              <Badge className="bg-green-600 text-white px-4 py-2 rounded-full">
-                Orders
-              </Badge>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Food Banner */}
       <div className="relative">
