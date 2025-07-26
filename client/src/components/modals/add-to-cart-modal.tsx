@@ -14,6 +14,7 @@ export default function AddToCartModal() {
   const [selectedFlavour, setSelectedFlavour] = useState("");
   const [selectedSauce, setSelectedSauce] = useState("");
   const [selectedCrust, setSelectedCrust] = useState("");
+  const [allergens, setAllergens] = useState("");
   
   // Collapsible states
   const [toppingsOpen, setToppingsOpen] = useState(true);
@@ -81,6 +82,7 @@ export default function AddToCartModal() {
     setQuantity(1);
     setSelectedToppings({});
     setSpecialInstructions("");
+    setAllergens("");
   };
 
   return (
@@ -209,17 +211,12 @@ export default function AddToCartModal() {
           {/* Allergens Description */}
           <div>
             <h3 className="font-bold text-lg mb-3">Allergens Description</h3>
-            <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-              <p className="text-sm text-gray-700">
-                <strong>Contains:</strong> Wheat, Milk, Eggs, Soy
-              </p>
-              <p className="text-sm text-gray-700">
-                <strong>May contain traces of:</strong> Nuts, Sesame, Fish
-              </p>
-              <p className="text-sm text-gray-600 italic">
-                Please inform staff of any allergies before ordering. Our kitchen handles multiple allergens and cross-contamination may occur.
-              </p>
-            </div>
+            <Textarea
+              placeholder="Please list any allergies or dietary restrictions"
+              value={allergens}
+              onChange={(e) => setAllergens(e.target.value)}
+              className="min-h-[80px] resize-none"
+            />
           </div>
 
           {/* Quantity and Add to Cart */}
