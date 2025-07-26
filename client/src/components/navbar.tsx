@@ -9,9 +9,8 @@ export default function Navbar() {
   const [location] = useLocation();
   const cartCount = items.reduce((count, item) => count + item.quantity, 0);
   
-  console.log('Navbar - Current location:', location);
-  console.log('Navbar - Cart items:', items);
-  console.log('Navbar - Cart count:', cartCount);
+  // Force check current path
+  const isOrdersPage = location.includes('/orders') || window.location.pathname.includes('/orders');
 
   return (
     <nav className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
@@ -27,7 +26,7 @@ export default function Navbar() {
           </Link>
           
           <div className="flex items-center space-x-3">
-            {location === '/orders' ? (
+            {isOrdersPage ? (
               <Link href="/">
                 <Button variant="ghost" className="flex items-center space-x-2">
                   <Home size={20} />
@@ -49,9 +48,9 @@ export default function Navbar() {
               <ShoppingCart size={20} />
               <span className="hidden sm:inline">Cart</span>
               {cartCount > 0 && (
-                <Badge variant="secondary" className="absolute -top-1 -right-1 bg-red-500 text-white min-w-[20px] h-5 flex items-center justify-center text-xs">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white min-w-[20px] h-5 flex items-center justify-center text-xs rounded-full font-bold">
                   {cartCount}
-                </Badge>
+                </span>
               )}
             </Button>
           </div>
