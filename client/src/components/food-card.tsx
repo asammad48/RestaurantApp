@@ -10,7 +10,7 @@ interface FoodCardProps {
 }
 
 export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
-  const { addItem, setAddToCartModalOpen } = useCartStore();
+  const { addItem, setAddToCartModalOpen, setLastAddedItem } = useCartStore();
   const [selectedSize, setSelectedSize] = useState<"small" | "medium" | "large">("medium");
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
 
@@ -32,7 +32,8 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
     return total + (toppingItem?.price || 0);
   }, 0);
   const totalPrice = currentPrice + toppingsPrice;
-  const discountedPrice = item.discount > 0 ? totalPrice * (1 - item.discount / 100) : totalPrice;
+  const discountPercentage = item.discount || 0;
+  const discountedPrice = discountPercentage > 0 ? totalPrice * (1 - discountPercentage / 100) : totalPrice;
   const originalPrice = totalPrice;
 
   const toggleTopping = (toppingName: string) => {
@@ -49,7 +50,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
       price: totalPrice.toFixed(2),
     };
     const variation = `${selectedSize}${selectedToppings.length > 0 ? ` + ${selectedToppings.join(', ')}` : ''}`;
-    addItem(itemWithVariation, variation);
+    setLastAddedItem(itemWithVariation);
     setAddToCartModalOpen(true);
   };
 
@@ -58,9 +59,9 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
       <div className="food-card bg-white rounded-xl shadow-sm p-4 flex flex-col sm:flex-row gap-4">
         <div className="relative w-full sm:w-32 h-32 flex-shrink-0">
           <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-lg" />
-          {item.discount > 0 && (
+          {discountPercentage > 0 && (
             <Badge className="absolute top-2 left-2 bg-red-500 text-white">
-              {item.discount}% off
+              {discountPercentage}% off
             </Badge>
           )}
         </div>
@@ -110,7 +111,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
           
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              {item.discount > 0 ? (
+              {discountPercentage > 0 ? (
                 <>
                   <span className="text-xl font-bold text-green-600">Rs. {discountedPrice.toFixed(2)}</span>
                   <span className="text-sm text-gray-400 line-through">Rs. {originalPrice.toFixed(2)}</span>
@@ -132,9 +133,9 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
     <div className="food-card bg-white rounded-xl shadow-sm overflow-hidden">
       <div className="relative">
         <img src={item.image} alt={item.name} className="w-full h-48 object-cover" />
-        {item.discount > 0 && (
+        {discountPercentage > 0 && (
           <Badge className="absolute top-3 left-3 bg-red-500 text-white">
-            {item.discount}% off
+            {discountPercentage}% off
           </Badge>
         )}
       </div>
@@ -184,7 +185,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
         
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
-            {item.discount > 0 ? (
+            {discountPercentage > 0 ? (
               <>
                 <span className="text-lg font-bold text-green-600">Rs. {discountedPrice.toFixed(2)}</span>
                 <span className="text-xs text-gray-400 line-through">Rs. {originalPrice.toFixed(2)}</span>

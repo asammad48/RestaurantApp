@@ -8,6 +8,7 @@ export interface CartItem extends MenuItem {
 
 interface CartStore {
   items: CartItem[];
+  lastAddedItem: MenuItem | null;
   isCartOpen: boolean;
   isServiceModalOpen: boolean;
   isAddToCartModalOpen: boolean;
@@ -30,10 +31,12 @@ interface CartStore {
   setReviewModalOpen: (open: boolean) => void;
   setOrderConfirmationOpen: (open: boolean) => void;
   setSplitBillMode: (mode: 'equality' | 'items') => void;
+  setLastAddedItem: (item: MenuItem | null) => void;
 }
 
 export const useCartStore = create<CartStore>((set, get) => ({
   items: [],
+  lastAddedItem: null,
   isCartOpen: false,
   isServiceModalOpen: false,
   isAddToCartModalOpen: false,
@@ -104,4 +107,5 @@ export const useCartStore = create<CartStore>((set, get) => ({
   setReviewModalOpen: (open: boolean) => set({ isReviewModalOpen: open }),
   setOrderConfirmationOpen: (open: boolean) => set({ isOrderConfirmationOpen: open }),
   setSplitBillMode: (mode: 'equality' | 'items') => set({ splitBillMode: mode }),
+  setLastAddedItem: (item: MenuItem | null) => set({ lastAddedItem: item }),
 }));
