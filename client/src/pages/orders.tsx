@@ -33,8 +33,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'pending',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     },
@@ -44,8 +44,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'pending',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     },
@@ -55,8 +55,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'pending',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     }
@@ -70,8 +70,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'completed',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     },
@@ -81,8 +81,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'completed',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     },
@@ -92,8 +92,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'completed',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=80&h=80&fit=crop&crop=center', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     }
@@ -108,7 +108,7 @@ export default function Orders() {
       price: 550.00,
       originalPrice: 'Rs. 550.00',
       discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
       category: 'pizza',
       isRecommended: true,
       isDeal: true
@@ -120,7 +120,7 @@ export default function Orders() {
       price: 550.00,
       originalPrice: 'Rs. 550.00',
       discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
       category: 'pizza',
       isRecommended: true,
       isDeal: true
@@ -132,7 +132,7 @@ export default function Orders() {
       price: 550.00,
       originalPrice: 'Rs. 550.00',
       discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
       category: 'pizza',
       isRecommended: true,
       isDeal: true
@@ -144,7 +144,7 @@ export default function Orders() {
       price: 550.00,
       originalPrice: 'Rs. 550.00',
       discount: 10,
-      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200',
+      image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center',
       category: 'pizza',
       isRecommended: true,
       isDeal: true
@@ -189,12 +189,12 @@ export default function Orders() {
       <div className="relative">
         <div className="h-32 bg-gradient-to-r from-green-500 to-green-600 relative overflow-hidden">
           <div className="absolute inset-0 flex">
-            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Pizza slice" className="w-1/6 h-full object-cover opacity-80" />
-            <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Pasta dish" className="w-1/6 h-full object-cover opacity-80" />
-            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Salad bowl" className="w-1/6 h-full object-cover opacity-80" />
-            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Pancakes" className="w-1/6 h-full object-cover opacity-80" />
-            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Burger" className="w-1/6 h-full object-cover opacity-80" />
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Salad" className="w-1/6 h-full object-cover opacity-80" />
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop&crop=center" alt="Pizza slice" className="w-1/6 h-full object-cover opacity-80" />
+            <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=300&h=200&fit=crop&crop=center" alt="Pasta dish" className="w-1/6 h-full object-cover opacity-80" />
+            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=300&h=200&fit=crop&crop=center" alt="Salad bowl" className="w-1/6 h-full object-cover opacity-80" />
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=200&fit=crop&crop=center" alt="Pancakes" className="w-1/6 h-full object-cover opacity-80" />
+            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=300&h=200&fit=crop&crop=center" alt="Burger" className="w-1/6 h-full object-cover opacity-80" />
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=200&fit=crop&crop=center" alt="Salad" className="w-1/6 h-full object-cover opacity-80" />
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-green-500/70 to-green-600/70"></div>
         </div>
