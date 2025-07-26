@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MenuItem } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,9 +11,45 @@ interface FoodCardProps {
 
 export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
   const { addItem, setAddToCartModalOpen } = useCartStore();
+  const [selectedSize, setSelectedSize] = useState<"small" | "medium" | "large">("medium");
+  const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
+
+  const sizes = [
+    { name: "small", label: "S", price: parseFloat(item.price) * 0.8 },
+    { name: "medium", label: "M", price: parseFloat(item.price) },
+    { name: "large", label: "L", price: parseFloat(item.price) * 1.3 },
+  ];
+
+  const toppings = [
+    { name: "cheese", label: "Extra Cheese", price: 50 },
+    { name: "pepperoni", label: "Pepperoni", price: 75 },
+    { name: "mushrooms", label: "Mushrooms", price: 40 },
+  ];
+
+  const currentPrice = sizes.find(size => size.name === selectedSize)?.price || parseFloat(item.price);
+  const toppingsPrice = selectedToppings.reduce((total, topping) => {
+    const toppingItem = toppings.find(t => t.name === topping);
+    return total + (toppingItem?.price || 0);
+  }, 0);
+  const totalPrice = currentPrice + toppingsPrice;
+  const discountedPrice = item.discount > 0 ? totalPrice * (1 - item.discount / 100) : totalPrice;
+  const originalPrice = totalPrice;
+
+  const toggleTopping = (toppingName: string) => {
+    setSelectedToppings(prev => 
+      prev.includes(toppingName) 
+        ? prev.filter(t => t !== toppingName)
+        : [...prev, toppingName]
+    );
+  };
 
   const handleAddToCart = () => {
-    addItem(item);
+    const itemWithVariation = {
+      ...item,
+      price: totalPrice.toFixed(2),
+    };
+    const variation = `${selectedSize}${selectedToppings.length > 0 ? ` + ${selectedToppings.join(', ')}` : ''}`;
+    addItem(itemWithVariation, variation);
     setAddToCartModalOpen(true);
   };
 
@@ -30,8 +67,58 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
         <div className="flex-1">
           <h3 className="font-semibold configurable-text-primary text-lg mb-2">{item.name}</h3>
           <p className="configurable-text-secondary text-sm mb-3">{item.description}</p>
+          
+          {/* Size Selection */}
+          <div className="mb-3">
+            <p className="text-sm font-medium configurable-text-primary mb-2">Variation</p>
+            <div className="flex space-x-2">
+              {sizes.map((size) => (
+                <button
+                  key={size.name}
+                  onClick={() => setSelectedSize(size.name as "small" | "medium" | "large")}
+                  className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${
+                    selectedSize === size.name
+                      ? 'configurable-primary text-white border-green-500'
+                      : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
+                  }`}
+                >
+                  {size.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Extra Toppings */}
+          <div className="mb-3">
+            <p className="text-sm font-medium configurable-text-primary mb-2">Extra Toppings</p>
+            <div className="flex flex-wrap gap-2">
+              {toppings.map((topping) => (
+                <button
+                  key={topping.name}
+                  onClick={() => toggleTopping(topping.name)}
+                  className={`px-2 py-1 rounded text-xs font-medium border transition-colors ${
+                    selectedToppings.includes(topping.name)
+                      ? 'configurable-primary text-white border-green-500'
+                      : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
+                  }`}
+                >
+                  {topping.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          
           <div className="flex items-center justify-between">
-            <span className="text-xl font-bold configurable-text-primary">Rs. {item.price}</span>
+            <div className="flex flex-col">
+              {item.discount > 0 ? (
+                <>
+                  <span className="text-xl font-bold text-green-600">Rs. {discountedPrice.toFixed(2)}</span>
+                  <span className="text-sm text-gray-400 line-through">Rs. {originalPrice.toFixed(2)}</span>
+                </>
+              ) : (
+                <span className="text-xl font-bold configurable-text-primary">Rs. {totalPrice.toFixed(2)}</span>
+              )}
+            </div>
             <Button onClick={handleAddToCart} className="configurable-primary text-white hover:bg-green-600">
               Add to cart
             </Button>
@@ -54,8 +141,58 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
       <div className="p-4">
         <h3 className="font-semibold configurable-text-primary mb-2">{item.name}</h3>
         <p className="text-sm configurable-text-secondary mb-3 line-clamp-2">{item.description}</p>
+        
+        {/* Size Selection */}
+        <div className="mb-3">
+          <p className="text-sm font-medium configurable-text-primary mb-2">Variation</p>
+          <div className="flex space-x-2">
+            {sizes.map((size) => (
+              <button
+                key={size.name}
+                onClick={() => setSelectedSize(size.name as "small" | "medium" | "large")}
+                className={`px-2 py-1 rounded-full text-xs font-medium border transition-colors ${
+                  selectedSize === size.name
+                    ? 'configurable-primary text-white border-green-500'
+                    : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
+                }`}
+              >
+                {size.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        {/* Extra Toppings */}
+        <div className="mb-3">
+          <p className="text-sm font-medium configurable-text-primary mb-2">Extra Toppings</p>
+          <div className="flex flex-wrap gap-1">
+            {toppings.map((topping) => (
+              <button
+                key={topping.name}
+                onClick={() => toggleTopping(topping.name)}
+                className={`px-2 py-1 rounded text-xs font-medium border transition-colors ${
+                  selectedToppings.includes(topping.name)
+                    ? 'configurable-primary text-white border-green-500'
+                    : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
+                }`}
+              >
+                {topping.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        
         <div className="flex items-center justify-between">
-          <span className="text-lg font-bold configurable-text-primary">Rs. {item.price}</span>
+          <div className="flex flex-col">
+            {item.discount > 0 ? (
+              <>
+                <span className="text-lg font-bold text-green-600">Rs. {discountedPrice.toFixed(2)}</span>
+                <span className="text-xs text-gray-400 line-through">Rs. {originalPrice.toFixed(2)}</span>
+              </>
+            ) : (
+              <span className="text-lg font-bold configurable-text-primary">Rs. {totalPrice.toFixed(2)}</span>
+            )}
+          </div>
           <Button 
             onClick={handleAddToCart} 
             size="sm"
