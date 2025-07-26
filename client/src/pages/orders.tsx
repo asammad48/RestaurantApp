@@ -7,11 +7,18 @@ import FoodCard from "@/components/food-card";
 import Footer from "@/components/footer";
 import { Order, MenuItem } from "@shared/schema";
 import { useCartStore } from "@/lib/store";
+import AddToCartModal from "@/components/modals/add-to-cart-modal";
+import CartModal from "@/components/modals/cart-modal";
+import PaymentModal from "@/components/modals/payment-modal";
+import SplitBillModal from "@/components/modals/split-bill-modal";
+import ReviewModal from "@/components/modals/review-modal";
+import ServiceRequestModal from "@/components/modals/service-request-modal";
+import OrderConfirmationModal from "@/components/modals/order-confirmation-modal";
 import { Link } from "wouter";
 
 export default function Orders() {
   const [activeTab, setActiveTab] = useState<'live' | 'history'>('live');
-  const { setCartOpen } = useCartStore();
+  const { setCartOpen, setPaymentModalOpen } = useCartStore();
 
   const { data: orders = [], isLoading } = useQuery<Order[]>({
     queryKey: ["/api/orders"],
@@ -266,7 +273,10 @@ export default function Orders() {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-green-600 text-white hover:bg-green-700 rounded-full py-3">
+                  <Button 
+                    className="w-full bg-green-600 text-white hover:bg-green-700 rounded-full py-3"
+                    onClick={() => setPaymentModalOpen(true)}
+                  >
                     Proceed to payment
                   </Button>
                 </div>
@@ -356,6 +366,15 @@ export default function Orders() {
       </div>
 
       <Footer />
+      
+      {/* Modals */}
+      <AddToCartModal />
+      <CartModal />
+      <PaymentModal />
+      <SplitBillModal />
+      <ReviewModal />
+      <ServiceRequestModal />
+      <OrderConfirmationModal />
     </div>
   );
 }
