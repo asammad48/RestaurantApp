@@ -85,15 +85,10 @@ export default function AddToCartModal() {
 
   return (
     <Dialog open={isAddToCartModalOpen} onOpenChange={setAddToCartModalOpen}>
-      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-lg">
         <DialogTitle className="text-center text-xl font-bold">Customization</DialogTitle>
         
-        <button
-          onClick={() => setAddToCartModalOpen(false)}
-          className="absolute top-4 right-4 p-2 rounded-full bg-green-600 text-white hover:bg-green-700"
-        >
-          <X size={16} />
-        </button>
+
 
         <div className="space-y-4">
           {/* Extra Toppings Section */}
@@ -111,18 +106,18 @@ export default function AddToCartModal() {
                     <div className="flex items-center space-x-2">
                       <button
                         onClick={() => updateToppingQuantity(topping.name, -1)}
-                        className="w-8 h-8 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
+                        className="w-6 h-6 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
                       >
-                        <Minus size={14} />
+                        <Minus size={12} />
                       </button>
-                      <span className="w-8 text-center text-sm font-medium">
+                      <span className="w-6 text-center text-xs font-medium">
                         {selectedToppings[topping.name] || 0}
                       </span>
                       <button
                         onClick={() => updateToppingQuantity(topping.name, 1)}
-                        className="w-8 h-8 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
+                        className="w-6 h-6 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
                       >
-                        <Plus size={14} />
+                        <Plus size={12} />
                       </button>
                     </div>
                   </div>
@@ -216,16 +211,16 @@ export default function AddToCartModal() {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="w-10 h-10 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
+                className="w-8 h-8 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
               >
-                <Minus size={16} />
+                <Minus size={14} />
               </button>
-              <span className="w-12 text-center font-medium">{quantity}</span>
+              <span className="w-8 text-center text-sm font-medium">{quantity}</span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
-                className="w-10 h-10 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
+                className="w-8 h-8 rounded bg-green-600 text-white flex items-center justify-center hover:bg-green-700"
               >
-                <Plus size={16} />
+                <Plus size={14} />
               </button>
             </div>
             <Button
