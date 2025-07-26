@@ -85,7 +85,7 @@ export default function AddToCartModal() {
 
   return (
     <Dialog open={isAddToCartModalOpen} onOpenChange={setAddToCartModalOpen}>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogTitle className="text-center text-xl font-bold">Customization</DialogTitle>
         
 
@@ -204,6 +204,22 @@ export default function AddToCartModal() {
               onChange={(e) => setSpecialInstructions(e.target.value)}
               className="min-h-[100px] resize-none"
             />
+          </div>
+
+          {/* Allergens Description */}
+          <div>
+            <h3 className="font-bold text-lg mb-3">Allergens Description</h3>
+            <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+              <p className="text-sm text-gray-700">
+                <strong>Contains:</strong> Wheat, Milk, Eggs, Soy
+              </p>
+              <p className="text-sm text-gray-700">
+                <strong>May contain traces of:</strong> Nuts, Sesame, Fish
+              </p>
+              <p className="text-sm text-gray-600 italic">
+                Please inform staff of any allergies before ordering. Our kitchen handles multiple allergens and cross-contamination may occur.
+              </p>
+            </div>
           </div>
 
           {/* Quantity and Add to Cart */}
