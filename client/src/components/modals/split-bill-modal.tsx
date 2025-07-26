@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useCartStore } from "@/lib/store";
 import { useCart } from "@/hooks/use-cart";
 
@@ -11,8 +12,22 @@ export default function SplitBillModal() {
   const { isSplitBillModalOpen, setSplitBillModalOpen, splitBillMode, setSplitBillMode, setReviewModalOpen } = useCartStore();
   const { items, total } = useCart();
   const [peopleCount, setPeopleCount] = useState(3);
+  const [mobileNumbers, setMobileNumbers] = useState<string[]>([]);
+  const [assignedPersons, setAssignedPersons] = useState<{ [itemId: string]: string }>({});
 
   const perPersonAmount = total / peopleCount;
+
+  const handleMobileNumberChange = (index: number, value: string) => {
+    // Only allow numbers and limit to 10 digits
+    const numericValue = value.replace(/\D/g, '').slice(0, 10);
+    const newMobileNumbers = [...mobileNumbers];
+    newMobileNumbers[index] = numericValue;
+    setMobileNumbers(newMobileNumbers);
+  };
+
+  const handlePersonAssignment = (itemId: string, mobileNumber: string) => {
+    setAssignedPersons(prev => ({ ...prev, [itemId]: mobileNumber }));
+  };
 
   const handleSendLink = () => {
     setSplitBillModalOpen(false);
@@ -21,12 +36,13 @@ export default function SplitBillModal() {
 
   return (
     <Dialog open={isSplitBillModalOpen} onOpenChange={setSplitBillModalOpen}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md max-h-[80vh]">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold configurable-text-primary">Split Bill</DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-6">
+        <ScrollArea className="max-h-[60vh] pr-4">
+          <div className="space-y-6">
           {/* Split Options */}
           <div className="flex">
             <Button
@@ -82,8 +98,12 @@ export default function SplitBillModal() {
                 {Array.from({ length: peopleCount }, (_, i) => (
                   <Input
                     key={i}
-                    placeholder={`Person ${i + 1} No.`}
+                    type="tel"
+                    placeholder={`Person ${i + 1} Mobile No.`}
+                    value={mobileNumbers[i] || ''}
+                    onChange={(e) => handleMobileNumberChange(i, e.target.value)}
                     className="w-full"
+                    maxLength={10}
                   />
                 ))}
               </div>
@@ -98,16 +118,17 @@ export default function SplitBillModal() {
                       <span className="font-medium configurable-text-primary">{item.name}</span>
                       <span className="font-bold configurable-text-primary">Rs. {(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
                     </div>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Assign to person" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="person1">Person 1</SelectItem>
-                        <SelectItem value="person2">Person 2</SelectItem>
-                        <SelectItem value="person3">Person 3</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Input
+                      type="tel"
+                      placeholder="Assign to person (Mobile No.)"
+                      value={assignedPersons[item.id] || ''}
+                      onChange={(e) => {
+                        const numericValue = e.target.value.replace(/\D/g, '').slice(0, 10);
+                        handlePersonAssignment(item.id, numericValue);
+                      }}
+                      className="w-full"
+                      maxLength={10}
+                    />
                   </div>
                 ))}
               </div>
@@ -120,7 +141,8 @@ export default function SplitBillModal() {
           >
             Send Link
           </Button>
-        </div>
+          </div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
