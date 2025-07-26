@@ -15,9 +15,11 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
 
   const sizes = [
-    { name: "small", label: "S", price: parseFloat(item.price) * 0.8 },
-    { name: "medium", label: "M", price: parseFloat(item.price) },
-    { name: "large", label: "L", price: parseFloat(item.price) * 1.3 },
+    { name: "small", label: "Small", price: parseFloat(item.price) * 0.8 },
+    { name: "medium", label: "Medium", price: parseFloat(item.price) },
+    { name: "large", label: "Large", price: parseFloat(item.price) * 1.3 },
+    { name: "half", label: "Half", price: parseFloat(item.price) * 0.6 },
+    { name: "full", label: "Full", price: parseFloat(item.price) * 1.2 },
   ];
 
   const toppings = [
@@ -27,11 +29,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
   ];
 
   const currentPrice = sizes.find(size => size.name === selectedSize)?.price || parseFloat(item.price);
-  const toppingsPrice = selectedToppings.reduce((total, topping) => {
-    const toppingItem = toppings.find(t => t.name === topping);
-    return total + (toppingItem?.price || 0);
-  }, 0);
-  const totalPrice = currentPrice + toppingsPrice;
+  const totalPrice = currentPrice;
   const discountPercentage = item.discount || 0;
   const discountedPrice = discountPercentage > 0 ? totalPrice * (1 - discountPercentage / 100) : totalPrice;
   const originalPrice = totalPrice;
@@ -49,7 +47,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
       ...item,
       price: totalPrice.toFixed(2),
     };
-    const variation = `${selectedSize}${selectedToppings.length > 0 ? ` + ${selectedToppings.join(', ')}` : ''}`;
+    const variation = sizes.find(size => size.name === selectedSize)?.label || 'Medium';
     setLastAddedItem(itemWithVariation);
     setAddToCartModalOpen(true);
   };
@@ -88,26 +86,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
               ))}
             </div>
           </div>
-          
-          {/* Extra Toppings */}
-          <div className="mb-3">
-            <p className="text-sm font-medium configurable-text-primary mb-2">Extra Toppings</p>
-            <div className="flex flex-wrap gap-2">
-              {toppings.map((topping) => (
-                <button
-                  key={topping.name}
-                  onClick={() => toggleTopping(topping.name)}
-                  className={`px-2 py-1 rounded text-xs font-medium border transition-colors ${
-                    selectedToppings.includes(topping.name)
-                      ? 'configurable-primary text-white border-green-500'
-                      : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
-                  }`}
-                >
-                  {topping.label}
-                </button>
-              ))}
-            </div>
-          </div>
+
           
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
@@ -162,26 +141,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
             ))}
           </div>
         </div>
-        
-        {/* Extra Toppings */}
-        <div className="mb-3">
-          <p className="text-sm font-medium configurable-text-primary mb-2">Extra Toppings</p>
-          <div className="flex flex-wrap gap-1">
-            {toppings.map((topping) => (
-              <button
-                key={topping.name}
-                onClick={() => toggleTopping(topping.name)}
-                className={`px-2 py-1 rounded text-xs font-medium border transition-colors ${
-                  selectedToppings.includes(topping.name)
-                    ? 'configurable-primary text-white border-green-500'
-                    : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
-                }`}
-              >
-                {topping.label}
-              </button>
-            ))}
-          </div>
-        </div>
+
         
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
