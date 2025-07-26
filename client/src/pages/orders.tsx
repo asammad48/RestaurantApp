@@ -33,8 +33,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'pending',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     },
@@ -44,8 +44,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'pending',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     },
@@ -55,8 +55,8 @@ export default function Orders() {
       time: 'Today, 2:30 PM',
       status: 'pending',
       items: [
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
-        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
       ],
       grandTotal: '$30.00'
     }
@@ -242,25 +242,40 @@ export default function Orders() {
                   {/* Order Progress Stepper */}
                   <div className="mb-6">
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <div className="w-3 h-3 bg-green-600 rounded-full flex items-center justify-center">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                      <div className="flex items-center w-full">
+                        {/* Order Placed - Active */}
+                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
                         </div>
-                        <div className="w-8 h-0.5 bg-green-600"></div>
-                        <div className="w-3 h-3 bg-green-600 rounded-full flex items-center justify-center">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                        <div className="flex-1 h-0.5 bg-green-600 mx-2"></div>
+                        
+                        {/* Preparing - Active */}
+                        <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
                         </div>
-                        <div className="w-8 h-0.5 bg-gray-300"></div>
-                        <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-                        <div className="w-8 h-0.5 bg-gray-300"></div>
-                        <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        <div className="flex-1 h-0.5 bg-gray-300 mx-2"></div>
+                        
+                        {/* Ready - Inactive */}
+                        <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                          <div className="w-3 h-3 bg-white rounded-full"></div>
+                        </div>
+                        <div className="flex-1 h-0.5 bg-gray-300 mx-2"></div>
+                        
+                        {/* Delivered - Inactive */}
+                        <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                          <div className="w-3 h-3 bg-white rounded-full"></div>
+                        </div>
                       </div>
                     </div>
                     <div className="flex justify-between mt-2 text-xs text-gray-500">
-                      <span>Order Placed</span>
-                      <span>Preparing</span>
-                      <span>Ready</span>
-                      <span>Delivered</span>
+                      <span className="text-center">Order Placed</span>
+                      <span className="text-center">Preparing</span>
+                      <span className="text-center">Ready</span>
+                      <span className="text-center">Delivered</span>
                     </div>
                   </div>
 
