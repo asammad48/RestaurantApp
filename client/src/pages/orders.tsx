@@ -62,6 +62,43 @@ export default function Orders() {
     }
   ];
 
+  // History orders data
+  const historyOrders = [
+    {
+      id: 'h1',
+      orderNumber: '#1247',
+      time: 'Today, 2:30 PM',
+      status: 'completed',
+      items: [
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+      ],
+      grandTotal: '$30.00'
+    },
+    {
+      id: 'h2',
+      orderNumber: '#1247',
+      time: 'Today, 2:30 PM',
+      status: 'completed',
+      items: [
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+      ],
+      grandTotal: '$30.00'
+    },
+    {
+      id: 'h3',
+      orderNumber: '#1247',
+      time: 'Today, 2:30 PM',
+      status: 'completed',
+      items: [
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' },
+        { name: '1 pasta', quantity: 2, image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80', price: 'Rs.18.00' }
+      ],
+      grandTotal: '$30.00'
+    }
+  ];
+
   // Recommended pizza data to match design
   const pizzaData = [
     {
@@ -289,8 +326,49 @@ export default function Orders() {
 
           {/* History Tab */}
           {activeTab === 'history' && (
-            <div className="text-center py-12">
-              <p className="text-gray-600">No order history available</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {historyOrders.map((order) => (
+                <div key={order.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                  {/* Order Header */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <p className="text-sm text-gray-500">{order.time}</p>
+                      <p className="font-semibold text-gray-900">Order {order.orderNumber}</p>
+                    </div>
+                    <Badge className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                      preparing
+                    </Badge>
+                  </div>
+
+                  {/* Order Items */}
+                  <div className="space-y-3 mb-4">
+                    {order.items.map((item, index) => (
+                      <div key={index} className="flex items-center space-x-3">
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          className="w-10 h-10 object-cover rounded-lg" 
+                        />
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-900">{item.name}</p>
+                          <p className="text-xs text-gray-500">Quantity: {item.quantity}</p>
+                        </div>
+                        <p className="text-sm font-semibold text-gray-900">{item.price}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Total */}
+                  <div className="mb-4 text-right">
+                    <p className="font-bold text-gray-900">Total: {order.grandTotal}</p>
+                  </div>
+
+                  {/* Order Completed Status */}
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                    <p className="text-green-700 font-medium text-lg">Order Completed</p>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
