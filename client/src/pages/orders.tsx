@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { ShoppingCart, Utensils, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import Navbar from "@/components/navbar";
-import FoodCard from "@/components/food-card";
-import Footer from "@/components/footer";
-import FloatingButtons from "@/components/floating-buttons";
-import { useCartStore } from "@/lib/store";
-import { useOrders } from "@/hooks/use-orders";
-import { useMenuItems } from "@/hooks/use-menu-items";
-import AddToCartModal from "@/components/modals/add-to-cart-modal";
-import CartModal from "@/components/modals/cart-modal";
-import PaymentModal from "@/components/modals/payment-modal";
-import SplitBillModal from "@/components/modals/split-bill-modal";
-import ReviewModal from "@/components/modals/review-modal";
-import ServiceRequestModal from "@/components/modals/service-request-modal";
-import OrderConfirmationModal from "@/components/modals/order-confirmation-modal";
+import { Button } from "../components/ui/button";
+import { Badge } from "../components/ui/badge";
+import Navbar from "../components/navbar";
+import FoodCard from "../components/food-card";
+import Footer from "../components/footer";
+import FloatingButtons from "../components/floating-buttons";
+import { useCartStore } from "../lib/store";
+import { useOrders } from "../hooks/use-orders";
+import { useMenuItems } from "../hooks/use-menu-items";
+import AddToCartModal from "../components/modals/add-to-cart-modal";
+import CartModal from "../components/modals/cart-modal";
+import PaymentModal from "../components/modals/payment-modal";
+import SplitBillModal from "../components/modals/split-bill-modal";
+import ReviewModal from "../components/modals/review-modal";
+import ServiceRequestModal from "../components/modals/service-request-modal";
+import OrderConfirmationModal from "../components/modals/order-confirmation-modal";
 import { Link } from "wouter";
 
 export default function Orders() {

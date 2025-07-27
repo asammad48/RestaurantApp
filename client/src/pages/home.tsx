@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { Search, ChevronLeft, ChevronRight, Armchair } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import FoodCard from "@/components/food-card";
-import FloatingButtons from "@/components/floating-buttons";
-import AddToCartModal from "@/components/modals/add-to-cart-modal";
-import CartModal from "@/components/modals/cart-modal";
-import PaymentModal from "@/components/modals/payment-modal";
-import SplitBillModal from "@/components/modals/split-bill-modal";
-import ReviewModal from "@/components/modals/review-modal";
-import ServiceRequestModal from "@/components/modals/service-request-modal";
-import OrderConfirmationModal from "@/components/modals/order-confirmation-modal";
-import ThemeSwitcher from "@/components/theme-switcher";
-import { useMenuItems } from "@/hooks/use-menu-items";
+import { Input } from "../components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
+import { Button } from "../components/ui/button";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
+import FoodCard from "../components/food-card";
+import FloatingButtons from "../components/floating-buttons";
+import AddToCartModal from "../components/modals/add-to-cart-modal";
+import CartModal from "../components/modals/cart-modal";
+import PaymentModal from "../components/modals/payment-modal";
+import SplitBillModal from "../components/modals/split-bill-modal";
+import ReviewModal from "../components/modals/review-modal";
+import ServiceRequestModal from "../components/modals/service-request-modal";
+import OrderConfirmationModal from "../components/modals/order-confirmation-modal";
+import ThemeSwitcher from "../components/theme-switcher";
+import { useMenuItems } from "../hooks/use-menu-items";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
