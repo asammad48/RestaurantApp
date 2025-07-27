@@ -1,21 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Palette } from "lucide-react";
 import { changeTheme } from "@/lib/colors";
+import { useThemes } from "@/hooks/use-themes";
 
 export default function ThemeSwitcher() {
   const [currentTheme, setCurrentTheme] = useState('default');
-  const [availableThemes, setAvailableThemes] = useState<string[]>([]);
   const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    // Fetch available themes from API
-    fetch('/api/themes')
-      .then(res => res.json())
-      .then(themes => setAvailableThemes(themes))
-      .catch(err => console.warn('Failed to fetch themes:', err));
-  }, []);
+  const { themes: availableThemes } = useThemes();
 
   const handleThemeChange = async (theme: string) => {
     setCurrentTheme(theme);

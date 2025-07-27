@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Search, ChevronLeft, ChevronRight, Armchair } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,7 +15,7 @@ import ReviewModal from "@/components/modals/review-modal";
 import ServiceRequestModal from "@/components/modals/service-request-modal";
 import OrderConfirmationModal from "@/components/modals/order-confirmation-modal";
 import ThemeSwitcher from "@/components/theme-switcher";
-import { MenuItem } from "@shared/schema";
+import { useMenuItems } from "@/hooks/use-menu-items";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,9 +23,7 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  const { data: menuItems = [], isLoading } = useQuery<MenuItem[]>({
-    queryKey: ["/api/menu-items"],
-  });
+  const { menuItems, isLoading } = useMenuItems();
 
   const filteredItems = menuItems.filter((item) => {
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||

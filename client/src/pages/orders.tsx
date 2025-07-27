@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { ShoppingCart, Utensils, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,8 +6,9 @@ import Navbar from "@/components/navbar";
 import FoodCard from "@/components/food-card";
 import Footer from "@/components/footer";
 import FloatingButtons from "@/components/floating-buttons";
-import { Order, MenuItem } from "@shared/schema";
 import { useCartStore } from "@/lib/store";
+import { useOrders } from "@/hooks/use-orders";
+import { useMenuItems } from "@/hooks/use-menu-items";
 import AddToCartModal from "@/components/modals/add-to-cart-modal";
 import CartModal from "@/components/modals/cart-modal";
 import PaymentModal from "@/components/modals/payment-modal";
@@ -22,13 +22,8 @@ export default function Orders() {
   const [activeTab, setActiveTab] = useState<'live' | 'history'>('live');
   const { setCartOpen, setPaymentModalOpen } = useCartStore();
 
-  const { data: orders = [], isLoading } = useQuery<Order[]>({
-    queryKey: ["/api/orders"],
-  });
-
-  const { data: menuItems = [] } = useQuery<MenuItem[]>({
-    queryKey: ["/api/menu-items"],
-  });
+  const { orders, isLoading } = useOrders();
+  const { menuItems } = useMenuItems();
 
   const liveOrders = orders.filter(order => order.status !== 'completed');
   const completedOrders = orders.filter(order => order.status === 'completed');

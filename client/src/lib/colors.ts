@@ -49,18 +49,26 @@ export const defaultColors: ColorConfig = {
   },
 };
 
-// Function to get current colors from API
+// Function to get current colors (will be replaced with .NET API call)
 export const getColors = async (theme: string = 'default'): Promise<ColorConfig> => {
-  try {
-    const response = await fetch(`/api/colors?theme=${theme}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch colors');
-    }
-    return await response.json();
-  } catch (error) {
-    console.warn('Failed to fetch colors from API, using defaults:', error);
-    return defaultColors;
+  // TODO: Replace with .NET API call
+  // For now, return different themes based on parameter
+  if (theme === 'blue') {
+    return {
+      ...defaultColors,
+      primary: '#2563eb',
+      primaryHover: '#1d4ed8',
+      accent: '#3b82f6',
+    };
+  } else if (theme === 'purple') {
+    return {
+      ...defaultColors,
+      primary: '#7c3aed',
+      primaryHover: '#6d28d9',
+      accent: '#8b5cf6',
+    };
   }
+  return defaultColors;
 };
 
 // Function to apply colors to CSS variables
