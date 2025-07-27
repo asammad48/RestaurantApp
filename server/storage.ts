@@ -131,7 +131,13 @@ export class MemStorage implements IStorage {
 
     sampleItems.forEach(item => {
       const id = randomUUID();
-      const menuItem: MenuItem = { ...item, id };
+      const menuItem: MenuItem = { 
+        ...item, 
+        id,
+        discount: item.discount ?? 0,
+        isRecommended: item.isRecommended ?? false,
+        isDeal: item.isDeal ?? false
+      };
       this.menuItems.set(id, menuItem);
     });
   }
@@ -163,7 +169,13 @@ export class MemStorage implements IStorage {
 
   async createMenuItem(insertItem: InsertMenuItem): Promise<MenuItem> {
     const id = randomUUID();
-    const item: MenuItem = { ...insertItem, id };
+    const item: MenuItem = { 
+      ...insertItem, 
+      id,
+      discount: insertItem.discount ?? 0,
+      isRecommended: insertItem.isRecommended ?? false,
+      isDeal: insertItem.isDeal ?? false
+    };
     this.menuItems.set(id, item);
     return item;
   }
@@ -186,6 +198,9 @@ export class MemStorage implements IStorage {
     const order: Order = { 
       ...insertOrder, 
       id, 
+      status: insertOrder.status ?? "pending",
+      paymentMethod: insertOrder.paymentMethod ?? null,
+      tip: insertOrder.tip ?? "0",
       createdAt: now, 
       updatedAt: now 
     };
@@ -215,7 +230,9 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const request: ServiceRequest = { 
       ...insertRequest, 
-      id, 
+      id,
+      status: insertRequest.status ?? "pending",
+      details: insertRequest.details ?? null,
       createdAt: new Date() 
     };
     this.serviceRequests.set(id, request);
@@ -244,7 +261,8 @@ export class MemStorage implements IStorage {
     const id = randomUUID();
     const review: Review = { 
       ...insertReview, 
-      id, 
+      id,
+      comment: insertReview.comment ?? null,
       createdAt: new Date() 
     };
     this.reviews.set(id, review);
