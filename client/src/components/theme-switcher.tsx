@@ -10,11 +10,12 @@ export default function ThemeSwitcher() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Fetch available themes from API
-    fetch('/api/themes')
-      .then(res => res.json())
-      .then(themes => setAvailableThemes(themes))
-      .catch(err => console.warn('Failed to fetch themes:', err));
+    // Fetch available themes from mock data
+    import('@/lib/mock-data').then(({ mockStorage }) => {
+      mockStorage.getThemes()
+        .then(themes => setAvailableThemes(themes))
+        .catch(err => console.warn('Failed to fetch themes:', err));
+    });
   }, []);
 
   const handleThemeChange = async (theme: string) => {

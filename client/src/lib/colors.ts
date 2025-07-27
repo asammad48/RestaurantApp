@@ -49,16 +49,14 @@ export const defaultColors: ColorConfig = {
   },
 };
 
-// Function to get current colors from API
+// Function to get current colors from mock data
 export const getColors = async (theme: string = 'default'): Promise<ColorConfig> => {
   try {
-    const response = await fetch(`/api/colors?theme=${theme}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch colors');
-    }
-    return await response.json();
+    // Import mock storage dynamically to avoid circular dependencies
+    const { mockStorage } = await import('./mock-data');
+    return await mockStorage.getColors(theme);
   } catch (error) {
-    console.warn('Failed to fetch colors from API, using defaults:', error);
+    console.warn('Failed to fetch colors, using defaults:', error);
     return defaultColors;
   }
 };
