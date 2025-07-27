@@ -24,14 +24,23 @@
   --ring: hsl(160, 84%, 39%);
   --radius: 0.5rem;
   
-  /* Custom restaurant theme colors */
-  --primary-color: hsl(160, 84%, 39%);
-  --primary-dark: hsl(160, 84%, 29%);
-  --accent-color: hsl(43, 96%, 56%);
-  --text-primary: hsl(215, 16%, 47%);
-  --text-secondary: hsl(215, 16%, 47%);
-  --bg-light: hsl(210, 40%, 96%);
-  --bg-white: hsl(0, 0%, 100%);
+  /* API-configurable restaurant theme colors */
+  --color-primary: #16a34a;
+  --color-primary-hover: #15803d;
+  --color-secondary: #f3f4f6;
+  --color-accent: #fbbf24;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-food-deal: #dc2626;
+  --color-food-recommended: #16a34a;
+  --color-food-category: #8b5cf6;
 }
 
 .dark {
@@ -67,24 +76,86 @@
 }
 
 @layer components {
+  /* Primary Background Colors */
   .configurable-primary {
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
   }
   
-  .configurable-primary-dark {
-    background-color: var(--primary-dark);
+  .configurable-primary-hover {
+    background-color: var(--color-primary-hover);
+  }
+  
+  .configurable-secondary {
+    background-color: var(--color-secondary);
   }
   
   .configurable-accent {
-    background-color: var(--accent-color);
+    background-color: var(--color-accent);
   }
   
+  .configurable-surface {
+    background-color: var(--color-surface);
+  }
+  
+  .configurable-background {
+    background-color: var(--color-background);
+  }
+  
+  /* Text Colors */
   .configurable-text-primary {
-    color: var(--text-primary);
+    color: var(--color-text-primary);
   }
   
   .configurable-text-secondary {
-    color: var(--text-secondary);
+    color: var(--color-text-secondary);
+  }
+  
+  .configurable-text-muted {
+    color: var(--color-text-muted);
+  }
+  
+  /* Border Colors */
+  .configurable-border {
+    border-color: var(--color-border);
+  }
+  
+  /* Status Colors */
+  .configurable-success {
+    background-color: var(--color-success);
+  }
+  
+  .configurable-warning {
+    background-color: var(--color-warning);
+  }
+  
+  .configurable-error {
+    background-color: var(--color-error);
+  }
+  
+  /* Food Specific Colors */
+  .configurable-deal {
+    background-color: var(--color-food-deal);
+  }
+  
+  .configurable-recommended {
+    background-color: var(--color-food-recommended);
+  }
+  
+  .configurable-category {
+    background-color: var(--color-food-category);
+  }
+  
+  /* Text variants for food colors */
+  .configurable-deal-text {
+    color: var(--color-food-deal);
+  }
+  
+  .configurable-recommended-text {
+    color: var(--color-food-recommended);
+  }
+  
+  .configurable-category-text {
+    color: var(--color-food-category);
   }
   
   .modal-overlay {

@@ -127,3 +127,29 @@ Preferred communication style: Simple, everyday language.
 - Optimized performance for mobile devices
 
 The application implements a complete restaurant ordering ecosystem with emphasis on user experience, accessibility, and responsive design. The modular architecture allows for easy extension and customization of features while maintaining type safety throughout the application.
+
+## Color Configuration System
+
+### API-Driven Color Management
+- **Centralized Configuration**: All colors are managed through a shared color system in `client/src/lib/colors.ts`
+- **API Integration**: Colors are fetched from `/api/colors` endpoint with theme parameter support
+- **CSS Variables**: All colors are applied as CSS variables for dynamic updates without page refresh
+- **Theme Switching**: Support for multiple themes (default, blue, purple) with real-time switching
+
+### Available Color Classes
+- **Primary Colors**: `.configurable-primary`, `.configurable-primary-hover`, `.configurable-secondary`
+- **Text Colors**: `.configurable-text-primary`, `.configurable-text-secondary`, `.configurable-text-muted`
+- **Status Colors**: `.configurable-success`, `.configurable-warning`, `.configurable-error`
+- **Food Specific**: `.configurable-deal`, `.configurable-recommended`, `.configurable-category`
+- **Surface Colors**: `.configurable-surface`, `.configurable-background`, `.configurable-border`
+
+### Implementation Details
+- **Color API**: Backend endpoints at `/api/colors` and `/api/themes` for dynamic color management
+- **Theme Switcher**: UI component for testing different color schemes (bottom-left corner)
+- **Fallback System**: Automatic fallback to default colors if API fails
+- **Type Safety**: Full TypeScript support with ColorConfig interface
+
+### Future API Integration
+The system is designed to be easily replaced with external API calls. Simply update the `getColors()` function in `client/src/lib/colors.ts` to fetch from your restaurant management system's color configuration API.
+
+**Last Updated**: January 26, 2025 - Implemented comprehensive color configuration system

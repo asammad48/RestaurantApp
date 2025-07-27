@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertOrderSchema, insertServiceRequestSchema, insertReviewSchema } from "@shared/schema";
+import { getThemeColors, getAllThemes } from "./color-api";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -112,6 +113,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid review data", errors: error.errors });
       }
       res.status(500).json({ message: "Failed to create review" });
+    }
+  });
+
+  // Color theme API endpoints
+  app.get("/api/colors", async (req, res) => {
+    try {
+      const theme = req.query.theme as string || 'default';
+      const colors = getThemeColors(theme);
+      res.json(colors);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch theme colors" });
+    }
+  });
+
+  app.get("/api/themes", async (req, res) => {
+    try {
+      const themes = getAllThemes();
+      res.json(themes);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch available themes" });
     }
   });
 

@@ -15,6 +15,7 @@ import SplitBillModal from "@/components/modals/split-bill-modal";
 import ReviewModal from "@/components/modals/review-modal";
 import ServiceRequestModal from "@/components/modals/service-request-modal";
 import OrderConfirmationModal from "@/components/modals/order-confirmation-modal";
+import ThemeSwitcher from "@/components/theme-switcher";
 import { MenuItem } from "@shared/schema";
 
 export default function Home() {
@@ -62,7 +63,7 @@ export default function Home() {
 
       {/* Hero Banner */}
       <div className="relative">
-        <div className="h-48 md:h-64 bg-gradient-to-r from-green-500 to-green-600 relative overflow-hidden">
+        <div className="h-48 md:h-64 relative overflow-hidden" style={{background: 'linear-gradient(to right, var(--color-primary), var(--color-primary-hover))'}}>
           <div className="absolute inset-0 flex">
             <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Pizza slice" className="w-1/6 h-full object-cover opacity-80" />
             <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Pasta dish" className="w-1/6 h-full object-cover opacity-80" />
@@ -71,10 +72,10 @@ export default function Home() {
             <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Burger" className="w-1/6 h-full object-cover opacity-80" />
             <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200" alt="Salad" className="w-1/6 h-full object-cover opacity-80" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-green-500/70 to-green-600/70"></div>
+          <div className="absolute inset-0 opacity-70" style={{background: 'linear-gradient(to right, var(--color-primary), var(--color-primary-hover))'}}></div>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 configurable-primary-dark text-white py-3">
+        <div className="absolute bottom-0 left-0 right-0 configurable-primary text-white py-3">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center">
             <Armchair className="mr-3" size={20} />
             <span className="text-lg font-medium">You're at TABLE #5</span>
@@ -190,6 +191,7 @@ export default function Home() {
 
       <Footer />
       <FloatingButtons />
+      <ThemeSwitcher />
 
       {/* Modals */}
       <AddToCartModal />

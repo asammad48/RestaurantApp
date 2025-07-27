@@ -40,12 +40,12 @@ export default function Navbar() {
             )}
             <Button 
               onClick={() => setCartOpen(true)}
-              className="flex items-center space-x-2 configurable-primary text-white hover:bg-green-600 relative"
+              className="flex items-center space-x-2 configurable-primary text-white hover:configurable-primary-hover relative"
             >
               <ShoppingCart size={20} />
               <span className="hidden sm:inline">Cart</span>
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white min-w-[20px] h-5 flex items-center justify-center text-xs rounded-full font-bold">
+                <span className="absolute -top-1 -right-1 configurable-error text-white min-w-[20px] h-5 flex items-center justify-center text-xs rounded-full font-bold">
                   {cartCount}
                 </span>
               )}

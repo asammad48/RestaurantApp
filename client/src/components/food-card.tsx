@@ -58,7 +58,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
         <div className="relative w-full sm:w-32 h-32 flex-shrink-0">
           <img src={item.image} alt={item.name} className="w-full h-full object-cover rounded-lg" />
           {discountPercentage > 0 && (
-            <Badge className="absolute top-2 left-2 bg-red-500 text-white">
+            <Badge className="absolute top-2 left-2 configurable-deal text-white">
               {discountPercentage}% off
             </Badge>
           )}
@@ -77,8 +77,8 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
                   onClick={() => setSelectedSize(size.name as "small" | "medium" | "large")}
                   className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${
                     selectedSize === size.name
-                      ? 'configurable-primary text-white border-green-500'
-                      : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
+                      ? 'configurable-primary text-white configurable-border'
+                      : 'configurable-secondary configurable-text-secondary configurable-border hover:configurable-border'
                   }`}
                 >
                   {size.label}
@@ -92,14 +92,14 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
             <div className="flex flex-col">
               {discountPercentage > 0 ? (
                 <>
-                  <span className="text-xl font-bold text-green-600">Rs. {discountedPrice.toFixed(2)}</span>
+                  <span className="text-xl font-bold configurable-recommended-text">Rs. {discountedPrice.toFixed(2)}</span>
                   <span className="text-sm text-gray-400 line-through">Rs. {originalPrice.toFixed(2)}</span>
                 </>
               ) : (
                 <span className="text-xl font-bold configurable-text-primary">Rs. {totalPrice.toFixed(2)}</span>
               )}
             </div>
-            <Button onClick={handleAddToCart} className="configurable-primary text-white hover:bg-green-600">
+            <Button onClick={handleAddToCart} className="configurable-primary text-white hover:configurable-primary-hover">
               Add to cart
             </Button>
           </div>
@@ -113,7 +113,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
       <div className="relative">
         <img src={item.image} alt={item.name} className="w-full h-48 object-cover" />
         {discountPercentage > 0 && (
-          <Badge className="absolute top-3 left-3 bg-red-500 text-white">
+          <Badge className="absolute top-3 left-3 configurable-deal text-white">
             {discountPercentage}% off
           </Badge>
         )}
@@ -132,8 +132,8 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
                 onClick={() => setSelectedSize(size.name as "small" | "medium" | "large")}
                 className={`px-2 py-1 rounded-full text-xs font-medium border transition-colors ${
                   selectedSize === size.name
-                    ? 'configurable-primary text-white border-green-500'
-                    : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-green-300'
+                    ? 'configurable-primary text-white configurable-border'
+                    : 'configurable-secondary configurable-text-secondary configurable-border hover:configurable-border'
                 }`}
               >
                 {size.label}
@@ -147,7 +147,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
           <div className="flex flex-col">
             {discountPercentage > 0 ? (
               <>
-                <span className="text-lg font-bold text-green-600">Rs. {discountedPrice.toFixed(2)}</span>
+                <span className="text-lg font-bold configurable-recommended-text">Rs. {discountedPrice.toFixed(2)}</span>
                 <span className="text-xs text-gray-400 line-through">Rs. {originalPrice.toFixed(2)}</span>
               </>
             ) : (
@@ -157,7 +157,7 @@ export default function FoodCard({ item, variant = "grid" }: FoodCardProps) {
           <Button 
             onClick={handleAddToCart} 
             size="sm"
-            className="configurable-primary text-white hover:bg-green-600"
+            className="configurable-primary text-white hover:configurable-primary-hover"
           >
             Add to cart
           </Button>
