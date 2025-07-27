@@ -156,9 +156,9 @@ The system is designed to be easily replaced with external API calls. Simply upd
 
 ## Migration Status
 - **Backend Removal**: All Node.js server files removed, replaced with simple Vite frontend server
-- **Sample Data**: Moved all sample data from backend storage to React hooks in `/client/src/data/sample-data.ts`
+- **Sample Data**: Moved all sample data from backend storage to React hooks in `/src/data/sample-data.ts`
 - **API Ready**: Custom hooks created for menu items, orders, themes - ready for .NET API integration
-- **Data Hooks**: `/client/src/hooks/use-menu-items.ts`, `/client/src/hooks/use-orders.ts`, `/client/src/hooks/use-themes.ts`
+- **Data Hooks**: `/src/hooks/use-menu-items.ts`, `/src/hooks/use-orders.ts`, `/src/hooks/use-themes.ts`
 - **Architecture**: Pure frontend React application with sample data, ready for external API calls
 
 ## Next Steps for .NET Integration
